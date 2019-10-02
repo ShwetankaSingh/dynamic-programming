@@ -1,0 +1,45 @@
+import java.io.*;
+import java.util.*;
+class subarray
+{
+	public static void main(String args[])throws IOException
+	{//contiguos array
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		String s[]=br.readLine().split(" ");
+		int l=s.length;
+		int a[]=new int[l];
+		for(int i=0;i<l;i++)
+			a[i]=Integer.parseInt(s[i]);
+		int temp=a[0];
+		int maxx=a[0];
+		int c=0,yy=0;
+		for(int i=1;i<l;i++)
+		{
+			
+			temp=Math.max(a[i],temp+a[i]);
+			//lll.add(temp);
+			//System.out.print(temp+" ");
+			if(temp>maxx)
+				c=i;
+			maxx=Math.max(maxx,temp);
+			}
+         System.out.println(maxx);
+         System.out.print("end index------->");
+         System.out.println(c);
+         //now traverse from c to till sum come
+         int fd=a[c];
+         int rw=0;
+         for(int g=c-1;g>=0;g--)
+         {
+            if(fd<maxx)
+            	fd=fd+a[g];
+             if(fd==maxx)
+            {
+            	System.out.print("Start index------>");
+            	System.out.println(g);
+            	rw=g;
+            	break;
+            }
+         }
+        for(int u=rw;u<=c;u++)
+        	System.out.print(a[u]+"   ");

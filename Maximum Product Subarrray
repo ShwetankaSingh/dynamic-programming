@@ -1,0 +1,23 @@
+import java.io.*;
+import java.util.*;
+class subarray
+{
+	public static void main(String args[])throws IOException
+	{//contiguos array
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		String s[]=br.readLine().split(" ");
+		int l=s.length;
+		int a[]=new int[l];
+		for(int i=0;i<l;i++)
+			a[i]=Integer.parseInt(s[i]);
+      int max=a[0],min=a[0],re=a[0];
+         for(int u=1;u<l;u++)
+         {
+         	int pmax=max,pmin=min;
+         	max=Math.max(Math.max(a[u],a[u]*pmax),a[u]*pmin);
+         	min=Math.min(Math.min(a[u],a[u]*pmax),a[u]*pmin);
+         	re=Math.max(re,max);
+         }
+         System.out.println(re);
+         }
+}

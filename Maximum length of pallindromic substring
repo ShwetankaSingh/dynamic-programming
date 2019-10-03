@@ -1,0 +1,52 @@
+import java.io.*;
+import java.util.*;
+class subarray
+{
+	public static void main(String args[])throws IOException
+	{
+	//maximum length of pallindromic substring
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		String s=br.readLine();
+		int l=s.length();
+		boolean a[][]=new boolean[l][l];
+		for(int i=0;i<l;i++)
+			a[i][i]=true;
+		for(int i=0;i<l-1;i++)//finding pallindromic substring of length 2
+		{
+			if(s.charAt(i)==s.charAt(i+1))
+			a[i][i+1]=true;
+		}
+		int ll=l-2;
+		int start=0;
+		int length=0;
+         for(int f=3;f<l;f++)
+         {
+         	for(int i=0;i<ll;i++)
+         	{
+         		int j=f+i-1;
+         		if(s.charAt(i)==s.charAt(j) && a[i+1][j-1]==true)
+         		{
+         			a[i][j]=true;
+         			start=i;
+         			length=f;
+         		}
+         	}
+            ll=l-f;
+         }
+         System.out.print("   ");
+         for(int i=0;i<l;i++)
+         	System.out.print(i+"      ");
+          System.out.println();
+         for(int i=0;i<l;i++)
+         {
+         	System.out.print(i+" ");
+         	for(int j=0;j<l;j++)
+         	{
+         		System.out.print(a[i][j]+"  ");
+         	}
+         	System.out.println("\n");
+         }
+			
+		System.out.println(s.substring(start,length+start));
+}
+}
